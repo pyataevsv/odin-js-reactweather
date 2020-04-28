@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "e9c6b91102d6bdca918265975c7d1cfa",
+    "revision": "43ec54fd99e071acb03d51c783330acb",
     "url": "/odin-js-reactweather/index.html"
   },
   {
-    "revision": "5b82a6bf10483fbf537b",
+    "revision": "660ce42f110a29631a71",
     "url": "/odin-js-reactweather/static/css/main.033fc042.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/odin-js-reactweather/static/js/2.f5cf54e9.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "5b82a6bf10483fbf537b",
-    "url": "/odin-js-reactweather/static/js/main.b0e45d30.chunk.js"
+    "revision": "660ce42f110a29631a71",
+    "url": "/odin-js-reactweather/static/js/main.7df9ec8c.chunk.js"
   },
   {
     "revision": "7e5055581c95a55d471e",
