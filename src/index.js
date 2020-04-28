@@ -11,17 +11,17 @@ class WeatherApp extends React.Component {
       city: 'Moscow',
       load: 'hide'
     }
-
     let weatherBuf = JSON.parse(window.localStorage.getItem('weatherbuf'));
-    this.state.weather = weatherBuf.weather;
+    //this.state.weather = weatherBuf.weather;
+
+    this.fetched = false;
 
     console.log(this.state.weather);
 
   }
 
-  componentDidMount() {
+  componentWillMount() {
     this.getWeatherData();
-
   }
 
   onInputChane = (e) => {
@@ -56,11 +56,11 @@ class WeatherApp extends React.Component {
       })
       .then(resp => {
         console.log(resp);
+        this.fetched = true;
         this.refreshWeather(resp);
       })
       .catch(err => console.log(err))
       .finally(() => {
-        console.log('asdfasdf')
         this.setState({ load: 'hide' });
       });
   }
@@ -74,132 +74,141 @@ class WeatherApp extends React.Component {
 
   render() {
 
-    let iconSrc = 'http://openweathermap.org/img/wn/' + this.state.weather.current.weather[0].icon + '@2x.png';
-
-    let hourIconSrc = this.state.weather.hourly.map((item, num) => {
-      return 'http://openweathermap.org/img/wn/' + item.weather[0].icon + '.png';
-    })
-
-    let tdMas = [], thMas = [];
-
-    for (let i = 0; i < 7; i++) {
-      let elementTd =
-        <td key={i}>
-          <div><img src={hourIconSrc[i + 1]} alt='icon'></img></div>
-          <div className='hourly-tmp'>{Math.round(this.state.weather.hourly[i + 1].temp)}&#8451;</div>
-        </td>
-      tdMas.push(elementTd);
-
-      let elementTh = <th key={i}>{(new Date(Date.now() + 3600000 * (i + 1))).getHours()}:00</th>
-
-      thMas.push(elementTh);
-    }
-
-    let dailyMas = this.state.weather.daily.map((item, number) => {
-
-      let dayNum = ((new Date(Date.now())).getDay() + number) > 7 ? (new Date(Date.now())).getDay() + number - 7 : (new Date(Date.now())).getDay() + number;
-
-      let day;
-
-      switch (dayNum) {
-        case (1):
-          day = 'Mon';
-          break;
-        case (2):
-          day = 'Tue';
-          break;
-        case (3):
-          day = 'Wed';
-          break;
-        case (4):
-          day = 'Thu';
-          break;
-        case (5):
-          day = 'Fri';
-          break;
-        case (6):
-          day = 'Sat';
-          break;
-        case (7):
-          day = 'Sun';
-          break;
-        default:
-          break;
-      }
-
-      if (number !== 0) {
-        return <div className='daily-item' key={number}>
-          <div>
-            {day}
-          </div>
-          <div>
-            <img src={'http://openweathermap.org/img/wn/' + item.weather[0].icon + '.png'} alt='icon'></img>
-            <div>{Math.round(item.temp.day)}&#8451;</div>
-          </div>
+    if (!this.fetched) {
+      return (
+        <div className='weather-app'>
+          <div className='current-box'>Fetching data...</div>
         </div>
-      } else {
-        return ''
+      )
+    } else {
+
+      let iconSrc = 'http://openweathermap.org/img/wn/' + this.state.weather.current.weather[0].icon + '@2x.png';
+
+      let hourIconSrc = this.state.weather.hourly.map((item, num) => {
+        return 'http://openweathermap.org/img/wn/' + item.weather[0].icon + '.png';
+      })
+
+      let tdMas = [], thMas = [];
+
+      for (let i = 0; i < 7; i++) {
+        let elementTd =
+          <td key={i}>
+            <div><img src={hourIconSrc[i + 1]} alt='icon'></img></div>
+            <div className='hourly-tmp'>{Math.round(this.state.weather.hourly[i + 1].temp)}&#8451;</div>
+          </td>
+        tdMas.push(elementTd);
+
+        let elementTh = <th key={i}>{(new Date(Date.now() + 3600000 * (i + 1))).getHours()}:00</th>
+
+        thMas.push(elementTh);
       }
-    })
 
+      let dailyMas = this.state.weather.daily.map((item, number) => {
 
+        let dayNum = ((new Date(Date.now())).getDay() + number) > 7 ? (new Date(Date.now())).getDay() + number - 7 : (new Date(Date.now())).getDay() + number;
 
-    return (
-      <div className='weather-app'>
-        <div className='current-box'>
+        let day;
 
-          <div>
-            <label htmlFor='input'></label>
-            <input type='text' id='input' value={this.state.city} onChange={this.onInputChane}></input>
-            <button onClick={this.getWeatherData}>go</button><span className={this.state.load}>Fetching data..</span>
-          </div>
+        switch (dayNum) {
+          case (1):
+            day = 'Mon';
+            break;
+          case (2):
+            day = 'Tue';
+            break;
+          case (3):
+            day = 'Wed';
+            break;
+          case (4):
+            day = 'Thu';
+            break;
+          case (5):
+            day = 'Fri';
+            break;
+          case (6):
+            day = 'Sat';
+            break;
+          case (7):
+            day = 'Sun';
+            break;
+          default:
+            break;
+        }
 
-          <div className='current-main'>
+        if (number !== 0) {
+          return <div className='daily-item' key={number}>
             <div>
-              <img src={iconSrc} alt='icon'></img> <br />
-              <div className='cur-wthdics'>{this.state.weather.current.weather[0].description}</div>
+              {day}
             </div>
-            <div className='current-temp'>
-              {Math.round(this.state.weather.current.temp)}&#8451;
+            <div>
+              <img src={'http://openweathermap.org/img/wn/' + item.weather[0].icon + '.png'} alt='icon'></img>
+              <div>{Math.round(item.temp.day)}&#8451;</div>
+            </div>
+          </div>
+        } else {
+          return ''
+        }
+      })
+
+
+
+      return (
+        <div className='weather-app'>
+          <div className='current-box'>
+
+            <div>
+              <label htmlFor='input'></label>
+              <input type='text' id='input' value={this.state.city} onChange={this.onInputChane}></input>
+              <button onClick={this.getWeatherData}>go</button><span className={this.state.load}>Loading..</span>
+            </div>
+
+            <div className='current-main'>
+              <div>
+                <img src={iconSrc} alt='icon'></img> <br />
+                <div className='cur-wthdics'>{this.state.weather.current.weather[0].description}</div>
+              </div>
+              <div className='current-temp'>
+                {Math.round(this.state.weather.current.temp)}&#8451;
               <div className='feels-like'>(feels like {Math.round(this.state.weather.current.feels_like)}&#8451;)</div>
-            </div>
-          </div>
-
-          <div className='current-sec'>
-
-            <div className='current-details'>
-              <div>Wind speen:</div>
-              <div> {this.state.weather.current.wind_speed} m/sec</div>
-              <div>Pressure: </div>
-              <div>{this.state.weather.current.pressure} hPa</div>
-              <div>Cloudiness: </div>
-              <div>{this.state.weather.current.clouds}%</div>
-              {/* <div>Pressure:{}</div> */}
+              </div>
             </div>
 
+            <div className='current-sec'>
+
+              <div className='current-details'>
+                <div>Wind speen:</div>
+                <div> {this.state.weather.current.wind_speed} m/sec</div>
+                <div>Pressure: </div>
+                <div>{this.state.weather.current.pressure} hPa</div>
+                <div>Cloudiness: </div>
+                <div>{this.state.weather.current.clouds}%</div>
+                {/* <div>Pressure:{}</div> */}
+              </div>
+
+            </div>
+
+
+          </div>
+          <div className='hourly-box'>
+            <table>
+
+              <tbody>
+                <tr>
+                  {thMas}
+                </tr>
+                <tr>
+                  {tdMas}
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div className='daily-box'>
+            {dailyMas}
           </div>
 
-
         </div>
-        <div className='hourly-box'>
-          <table>
-
-            <tbody>
-              <tr>
-                {thMas}
-              </tr>
-              <tr>
-                {tdMas}
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div className='daily-box'>
-          {dailyMas}
-        </div>
-
-      </div>
-    )
+      )
+    }
   }
 
 }
