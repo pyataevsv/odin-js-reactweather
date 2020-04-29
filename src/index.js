@@ -77,7 +77,18 @@ class WeatherApp extends React.Component {
     if (!this.fetched) {
       return (
         <div className='weather-app'>
-          <div className='current-box'>Fetching data...</div>
+          <div className='current-box'>
+            Fetching data...
+          
+          <div class="box">
+            <div class="it m1"></div>
+            <div class="it m2"></div>
+            <div class="it m3"></div>
+            <div class="it m4"></div>
+            <div class="it m5"></div>
+          </div>
+          </div>
+          
         </div>
       )
     } else {
@@ -159,7 +170,15 @@ class WeatherApp extends React.Component {
             <div>
               <label htmlFor='input'></label>
               <input type='text' id='input' value={this.state.city} onChange={this.onInputChane}></input>
-              <button onClick={this.getWeatherData}>go</button><span className={this.state.load}>Loading..</span>
+              <button onClick={this.getWeatherData}>go</button><span className={this.state.load}>
+                <div className="box">
+                  <div className="it m1"></div>
+                  <div className="it m2"></div>
+                  <div className="it m3"></div>
+                  <div className="it m4"></div>
+                  <div className="it m5"></div>
+              </div>
+          </span>
             </div>
 
             <div className='current-main'>
