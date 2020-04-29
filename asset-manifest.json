@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/odin-js-reactweather/static/css/main.033fc042.chunk.css",
-    "main.js": "/odin-js-reactweather/static/js/main.7df9ec8c.chunk.js",
-    "main.js.map": "/odin-js-reactweather/static/js/main.7df9ec8c.chunk.js.map",
+    "main.css": "/odin-js-reactweather/static/css/main.29ff60e5.chunk.css",
+    "main.js": "/odin-js-reactweather/static/js/main.4ab7e77f.chunk.js",
+    "main.js.map": "/odin-js-reactweather/static/js/main.4ab7e77f.chunk.js.map",
     "runtime-main.js": "/odin-js-reactweather/static/js/runtime-main.7c525d8f.js",
     "runtime-main.js.map": "/odin-js-reactweather/static/js/runtime-main.7c525d8f.js.map",
     "static/js/2.f5cf54e9.chunk.js": "/odin-js-reactweather/static/js/2.f5cf54e9.chunk.js",
     "static/js/2.f5cf54e9.chunk.js.map": "/odin-js-reactweather/static/js/2.f5cf54e9.chunk.js.map",
     "index.html": "/odin-js-reactweather/index.html",
-    "precache-manifest.eef40a1b590dca0b13945abcf965f6c6.js": "/odin-js-reactweather/precache-manifest.eef40a1b590dca0b13945abcf965f6c6.js",
+    "precache-manifest.46f163ca86b8b6693aab7e2651cbf88a.js": "/odin-js-reactweather/precache-manifest.46f163ca86b8b6693aab7e2651cbf88a.js",
     "service-worker.js": "/odin-js-reactweather/service-worker.js",
-    "static/css/main.033fc042.chunk.css.map": "/odin-js-reactweather/static/css/main.033fc042.chunk.css.map",
+    "static/css/main.29ff60e5.chunk.css.map": "/odin-js-reactweather/static/css/main.29ff60e5.chunk.css.map",
     "static/js/2.f5cf54e9.chunk.js.LICENSE.txt": "/odin-js-reactweather/static/js/2.f5cf54e9.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.7c525d8f.js",
     "static/js/2.f5cf54e9.chunk.js",
-    "static/css/main.033fc042.chunk.css",
-    "static/js/main.7df9ec8c.chunk.js"
+    "static/css/main.29ff60e5.chunk.css",
+    "static/js/main.4ab7e77f.chunk.js"
   ]
 }
